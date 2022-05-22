@@ -1,6 +1,3 @@
-/org.eclipse.jdt.core.prefs
-/org.eclipse.m2e.core.prefs
-/org.eclipse.core.resources.prefs
 resourcesDev
 javaDev
 *.iml
@@ -14,3 +11,4 @@ target
 /local_configs
 java.generated
 /bin
+/.idea/
