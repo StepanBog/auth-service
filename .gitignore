@@ -1,7 +1,6 @@
 resourcesDev
 javaDev
 *.iml
-.idea
 target
 .classpath
 .project
@@ -11,4 +10,3 @@ target
 /local_configs
 java.generated
 /bin
-/.idea/
