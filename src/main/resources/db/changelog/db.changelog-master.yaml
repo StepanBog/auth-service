@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: scripts/liquibase_package.xml
+      relativeToChangelogFile: true

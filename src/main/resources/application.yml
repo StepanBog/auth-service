@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: odp-auth
+  liquibase:
+    enabled: true
+  datasource:
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 5
+      idleTimeout: 20000
+      connection-timeout: 30000
+      keepaliveTime: 60000
+      maxLifetime: 180000
+      connection-test-query: SELECT 1
+    name: postgres-datasource
+    url: jdbc:postgresql://localhost:5432/auth-service
+    username: postgres
+    password: root
+
+  jpa:
+    open-in-view: false
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    generate-ddl: false
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: false
+        temp:
+          use_jdbc_metadata_defaults: false
+        use_sql_comments: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+grpc:
+  server:
+    port: 6564
+    enable-keep-alive: false
+    keepAliveTime: 10s
+    keepAliveTimeout: 5s
+    permit-keep-alive-without-calls: false
+  client:
+    odp-service:
+      address: 'static://localhost:6563'
+      enableKeepAlive: true
+      keepAliveTime: 10s
+      keepAliveTimeout: 5s
+      keepAliveWithoutCalls: false
+      negotiationType: PLAINTEXT
+
+ru:
+  bogdanov:
+    token:
+      ttl: 1800 #время жизни токена в секундах
+      refresh-token-ttl: 172800   #время жизни токенаобновления в секундах

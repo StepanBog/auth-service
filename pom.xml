@@ -28,7 +28,6 @@
     </properties>
 
     <dependencies>
-        <!-- starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -55,25 +54,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
-        <!-- internal libs -->
-        <dependency>
-            <groupId>tech.inno.grpc-proto</groupId>
-            <artifactId>odp-auth-proto</artifactId>
-            <version>${odp-auth-proto.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>tech.inno.grpc-proto</groupId>
-            <artifactId>odp-common-proto</artifactId>
-            <version>${odp-common-proto.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>tech.inno.grpc-proto</groupId>
-            <artifactId>odp-service-proto</artifactId>
-            <version>${odp-service-proto.version}</version>
-        </dependency>
-
-        <!-- libs -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
@@ -127,6 +107,17 @@
             <groupId>de.siegmar</groupId>
             <artifactId>logback-gelf</artifactId>
             <version>${logback.gelf.version}</version>
+        </dependency>
+            <dependency>
+                <groupId>ru.bogdanov.diplom</groupId>
+                <artifactId>common-proto</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+        <dependency>
+            <groupId>ru.bogdanov.diplom</groupId>
+            <artifactId>auth-proto</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 

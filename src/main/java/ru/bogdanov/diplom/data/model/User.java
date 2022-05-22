@@ -17,7 +17,6 @@ import java.util.UUID;
 @Table(name = "\"user\"")
 @Getter
 @Setter
-@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -35,7 +34,7 @@ public class User extends AbstractEntity implements Serializable {
     private UUID employerId;
 
     /**
-     * Логин работника
+     * Логин пользователя
      */
     private String login;
 
@@ -69,16 +68,11 @@ public class User extends AbstractEntity implements Serializable {
     private Long refreshTokenTtl = 172800L;
 
     /**
-     * Роли пользователя
+     * Роль пользователя
      */
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @Builder.Default
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 }

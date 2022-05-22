@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.advice.GrpcAdvice;
 import net.devh.boot.grpc.server.advice.GrpcExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;
-import tech.inno.odp.data.exception.AuthServiceException;
-import tech.inno.odp.grpc.generated.common.ErrorCode;
-import tech.inno.odp.utils.GrpcErrorUtils;
+import ru.bogdanov.diplom.data.exception.AuthServiceException;
+import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.utils.GrpcErrorUtils;
 
 @Slf4j
 @GrpcAdvice

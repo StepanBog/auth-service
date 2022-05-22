@@ -6,15 +6,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import ru.bogdanov.diplom.data.exception.AuthServiceException;
 import ru.bogdanov.diplom.data.model.User;
-import tech.inno.odp.data.exception.AuthServiceException;
-import tech.inno.odp.grpc.generated.auth.AuthResponse;
-import tech.inno.odp.grpc.generated.auth.AuthServiceGrpc;
-import tech.inno.odp.grpc.generated.common.ErrorCode;
-import tech.inno.odp.mapper.UserMapper;
-import tech.inno.odp.service.IAuthService;
-import tech.inno.odp.service.ITokenService;
-import tech.inno.odp.utils.TokenHolder;
+import ru.bogdanov.diplom.grpc.generated.auth.AuthResponse;
+import ru.bogdanov.diplom.grpc.generated.auth.AuthServiceGrpc;
+import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.mapper.UserMapper;
+import ru.bogdanov.diplom.service.IAuthService;
+import ru.bogdanov.diplom.service.ITokenService;
+import ru.bogdanov.diplom.utils.TokenHolder;
 
 @GrpcService(interceptorNames = "authorizationTokenInterceptor")
 @RequiredArgsConstructor

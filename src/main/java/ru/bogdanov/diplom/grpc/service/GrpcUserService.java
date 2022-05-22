@@ -4,18 +4,14 @@ import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.springframework.data.domain.Page;
-import tech.inno.odp.data.exception.NotFoundServiceException;
-import tech.inno.odp.grpc.generated.auth.model.User;
-import tech.inno.odp.grpc.generated.auth.user.OneUserRequest;
-import tech.inno.odp.grpc.generated.auth.user.UserSearchRequest;
-import tech.inno.odp.grpc.generated.auth.user.UserServiceGrpc;
-import tech.inno.odp.grpc.generated.auth.user.UsersResponse;
-import tech.inno.odp.mapper.UserMapper;
-import tech.inno.odp.service.IUserService;
+import ru.bogdanov.diplom.data.exception.NotFoundServiceException;
+import ru.bogdanov.diplom.grpc.generated.auth.model.User;
+import ru.bogdanov.diplom.grpc.generated.auth.user.OneUserRequest;
+import ru.bogdanov.diplom.grpc.generated.auth.user.UserServiceGrpc;
+import ru.bogdanov.diplom.mapper.UserMapper;
+import ru.bogdanov.diplom.service.IUserService;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @GrpcService
 @RequiredArgsConstructor
@@ -50,22 +46,6 @@ public class GrpcUserService extends UserServiceGrpc.UserServiceImplBase {
         responseObserver.onNext(
                 userMapper.transform(
                         userService.findById(userId))
-        );
-        responseObserver.onCompleted();
-    }
-
-    @Override
-    public void find(UserSearchRequest request, StreamObserver<UsersResponse> responseObserver) {
-        Page<tech.inno.odp.data.model.User> findUsers = userService.find(request);
-        responseObserver.onNext(
-                UsersResponse
-                        .newBuilder()
-                        .addAllUsers(findUsers.getContent().stream()
-                                .map(userMapper::transform)
-                                .collect(Collectors.toList()))
-                        .setTotalPages(findUsers.getTotalPages())
-                        .setTotalSize(findUsers.getTotalElements())
-                        .build()
         );
         responseObserver.onCompleted();
     }

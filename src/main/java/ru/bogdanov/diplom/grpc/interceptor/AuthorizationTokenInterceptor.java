@@ -34,13 +34,6 @@ public class AuthorizationTokenInterceptor implements ServerInterceptor {
 
     private static class AuthenticatingServerCallListener<ReqT> extends AbstractAuthenticatingServerCallListener<ReqT> {
 
-        /**
-         * Creates a new AbstractAuthenticatingServerCallListener which will attach the given security context before
-         * delegating to the given listener.
-         *
-         * @param delegate The listener to delegate to.
-         * @param context  The context to attach.
-         */
         protected AuthenticatingServerCallListener(ServerCall.Listener<ReqT> delegate, Context context) {
             super(delegate, context);
         }
