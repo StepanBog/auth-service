@@ -10,3 +10,4 @@ target
 /local_configs
 java.generated
 /bin
+.idea/
