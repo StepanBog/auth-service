@@ -41,13 +41,13 @@ management:
 
 grpc:
   server:
-    port: 6564
+    port: 6570
     enable-keep-alive: false
     keepAliveTime: 10s
     keepAliveTimeout: 5s
     permit-keep-alive-without-calls: false
   client:
-    odp-service:
+    main-service:
       address: 'static://localhost:6563'
       enableKeepAlive: true
       keepAliveTime: 10s

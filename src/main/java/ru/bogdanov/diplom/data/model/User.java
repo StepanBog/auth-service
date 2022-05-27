@@ -5,8 +5,6 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -17,8 +15,9 @@ import java.util.UUID;
 @Table(name = "\"user\"")
 @Getter
 @Setter
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString
 public class User extends AbstractEntity implements Serializable {

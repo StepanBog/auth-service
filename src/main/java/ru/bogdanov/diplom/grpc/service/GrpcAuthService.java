@@ -8,6 +8,7 @@ import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import ru.bogdanov.diplom.data.exception.AuthServiceException;
 import ru.bogdanov.diplom.data.model.User;
+import ru.bogdanov.diplom.grpc.generated.auth.AuthRequest;
 import ru.bogdanov.diplom.grpc.generated.auth.AuthResponse;
 import ru.bogdanov.diplom.grpc.generated.auth.AuthServiceGrpc;
 import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
@@ -26,13 +27,13 @@ public class GrpcAuthService extends AuthServiceGrpc.AuthServiceImplBase {
     private final IAuthService authService;
 
     @Override
-    public void auth(Empty request, StreamObserver<AuthResponse> responseObserver) {
+    public void auth(AuthRequest request, StreamObserver<AuthResponse> responseObserver) {
         UsernamePasswordAuthenticationToken basicToken = TokenHolder.getBasicAuthentication();
         if (basicToken == null || basicToken.getPrincipal() == null || basicToken.getCredentials() == null) {
             throw new AuthServiceException("Invalid authentication token", ErrorCode.AUTHORIZATION_ERROR, 401);
         }
 
-        User user = authService.authenticate(basicToken);
+        User user = authService.authenticate(basicToken,request.getRole());
         AuthResponse response = AuthResponse.newBuilder()
                 .setUser(userMapper.transform(user))
                 .setAccessToken(tokenService.generateUserToken(user))

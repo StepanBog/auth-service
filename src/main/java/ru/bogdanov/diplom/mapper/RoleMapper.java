@@ -25,7 +25,7 @@ public interface RoleMapper {
     default String transform(Role role) {
         return role.getAuthority();
     }
-
+/*
     default Set<Role> transform(List<ru.bogdanov.diplom.grpc.generated.auth.model.Role> roles) {
         return roles.stream()
                 .map(r -> Role.builder()
@@ -42,5 +42,5 @@ public interface RoleMapper {
                         .setDescription(r.getDescription())
                         .build())
                 .collect(Collectors.toList());
-    }
+    }*/
 }

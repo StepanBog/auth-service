@@ -2,6 +2,7 @@ package ru.bogdanov.diplom.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.jws.JsonWebSignature;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Component;
 import ru.bogdanov.diplom.config.TokenConfigurationProperties;
 import ru.bogdanov.diplom.data.model.Role;
 import ru.bogdanov.diplom.data.model.User;
+import ru.bogdanov.diplom.utils.CryptoUtils;
 
+import javax.annotation.PostConstruct;
 import java.util.stream.Collectors;
 
 @Component
@@ -26,13 +29,13 @@ public class TokenManager {
     @Value(value = "${tech.inno.keystore.secret-key:}")
     private char[] keyStoreSecretKey;
 
-   /* @PostConstruct
+    @PostConstruct
     public void init() throws Exception {
         if (keyStoreSecretKey == null || keyStoreSecretKey.length == 0) {
             this.keyStoreSecretKey = RandomStringUtils.randomAscii(35).toCharArray();
         }
         CryptoUtils.initKeyStore(keyStoreSecretKey);
-    }*/
+    }
 
     @SneakyThrows
     public String generateToken(User user) {
@@ -44,10 +47,7 @@ public class TokenManager {
         claims.setSubject(user.getId().toString());
         claims.setClaim("employerId", user.getEmployerId());
         claims.setClaim("employeeId", user.getEmployeeId());
-        claims.setClaim("roles", user.getRoles()
-                .stream()
-                .map(Role::getAuthority)
-                .collect(Collectors.toSet())
+        claims.setClaim("role", user.getRole()
         );
 
         long ttl = (user.getTokenTtl() != null) ?
@@ -58,7 +58,7 @@ public class TokenManager {
 
         JsonWebSignature signature = new JsonWebSignature();
         signature.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
-   //     signature.setKey(CryptoUtils.getSignPrivateKey(keyStoreSecretKey));
+        signature.setKey(CryptoUtils.getSignPrivateKey(keyStoreSecretKey));
         signature.setPayload(claims.toJson());
         return signature.getCompactSerialization();
     }
@@ -66,7 +66,7 @@ public class TokenManager {
     @SneakyThrows
     public JwtContext validateToken(String token) {
         JwtConsumer consumer = new JwtConsumerBuilder()
-        //        .setVerificationKey(CryptoUtils.getSignCertificate().getPublicKey())
+                .setVerificationKey(CryptoUtils.getSignCertificate().getPublicKey())
                 .setRequireSubject()
                 .setRequireJwtId()
                 .setRequireExpirationTime()
@@ -85,10 +85,7 @@ public class TokenManager {
         claims.setSubject(user.getId().toString());
         claims.setClaim("employerId", user.getEmployerId());
         claims.setClaim("employeeId", user.getEmployeeId());
-        claims.setClaim("roles", user.getRoles()
-                .stream()
-                .map(Role::getAuthority)
-                .collect(Collectors.toSet())
+        claims.setClaim("role", user.getRole()
         );
 
         long refreshTtl = (user.getRefreshTokenTtl() != null) ?
@@ -99,7 +96,7 @@ public class TokenManager {
 
         JsonWebSignature signature = new JsonWebSignature();
         signature.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
-    //    signature.setKey(CryptoUtils.getSignPrivateKey(keyStoreSecretKey));
+        signature.setKey(CryptoUtils.getSignPrivateKey(keyStoreSecretKey));
         signature.setPayload(claims.toJson());
         return signature.getCompactSerialization();
     }

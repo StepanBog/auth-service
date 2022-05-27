@@ -64,7 +64,7 @@ public class UserService implements IUserService {
                         .build());
 
         user.setTokenTtl(tokenConfigurationProperties.getTtl());
-        user.getRoles().add(userRole);
+        user.setRole(userRole);
         return userRepository.save(user);
     }
 

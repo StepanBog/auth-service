@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bogdanov.diplom.data.exception.AuthServiceException;
 import ru.bogdanov.diplom.data.model.User;
+import ru.bogdanov.diplom.grpc.generated.auth.model.UserRole;
 import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
 import ru.bogdanov.diplom.service.IAuthService;
 import ru.bogdanov.diplom.service.IUserService;
@@ -27,7 +28,7 @@ public class AuthService implements IAuthService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public User authenticate(@NotNull final UsernamePasswordAuthenticationToken basicToken) {
+    public User authenticate(@NotNull final UsernamePasswordAuthenticationToken basicToken, UserRole role) {
         String principal = basicToken.getPrincipal().toString();
         String credentials = basicToken.getCredentials().toString();
 
@@ -47,6 +48,9 @@ public class AuthService implements IAuthService {
 
         if (!passwordEncoder.matches(credentials, existUser.getPassword())) {
             throw new AuthServiceException("Incorrect password", ErrorCode.AUTHORIZATION_ERROR, 401);
+        }
+        if (!existUser.getRole().getRoleName().name().equals(role.name())) {
+            throw new AuthServiceException("Incorrect role", ErrorCode.AUTHORIZATION_ERROR, 401);
         }
         return existUser;
     }

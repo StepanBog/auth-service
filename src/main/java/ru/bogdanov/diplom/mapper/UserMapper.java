@@ -19,11 +19,11 @@ import ru.bogdanov.diplom.mapper.common.UUIDValueMapper;
 public interface UserMapper {
 
     @Mapping(target = "username", source = "login")
-    @Mapping(target = "rolesList", source = "roles")
+    @Mapping(target = "role", source = "role")
     ru.bogdanov.diplom.grpc.generated.auth.model.User transform(User user);
 
     @Mapping(target = "login", source = "username")
-    @Mapping(target = "roles", source = "rolesList")
+    @Mapping(target = "role", source = "role")
     User transform(ru.bogdanov.diplom.grpc.generated.auth.model.User user);
 
 }

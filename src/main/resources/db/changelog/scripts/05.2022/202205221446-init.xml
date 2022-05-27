@@ -11,5 +11,19 @@
                  relativeToChangelogFile="true"/>
 
     </changeSet>
+    <changeSet id="20222605" author="SBogdanov" failOnError="true"
+               logicalFilePath="db/changelog/scripts/05.2022/liquibase_index.xml">
+        <comment>add-refresh-token-ttl</comment>
+        <sqlFile path="sql/20222605-add-refresh-token-ttl.sql"
+                 relativeToChangelogFile="true"/>
+
+    </changeSet>
+    <changeSet id="20222602" author="SBogdanov" failOnError="true"
+               logicalFilePath="db/changelog/scripts/05.2022/liquibase_index.xml">
+        <comment>add-refresh-token-ttl</comment>
+        <sqlFile path="sql/data.sql"
+                 relativeToChangelogFile="true"/>
+
+    </changeSet>
 
 </databaseChangeLog>

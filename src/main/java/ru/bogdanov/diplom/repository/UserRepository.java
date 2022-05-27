@@ -22,20 +22,20 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
 
-    @EntityGraph(attributePaths = { "roles"})
+    @EntityGraph(attributePaths = { "role"})
     Optional<User> findByLoginEqualsIgnoreCase(String login);
 
-    @EntityGraph(attributePaths = {"roles"})
+    @EntityGraph(attributePaths = {"role"})
     Optional<User> findByEmployeeId(UUID employeeId);
 
-    @EntityGraph(attributePaths = { "roles"})
+    @EntityGraph(attributePaths = { "role"})
     Optional<User> findByRefreshToken(String refreshToken);
 
     @Override
-    @EntityGraph(attributePaths = { "roles"})
+    @EntityGraph(attributePaths = { "role"})
     List<User> findAll(Specification<User> specification, Sort sort);
 
     @Override
-    @EntityGraph(attributePaths = { "roles"})
+    @EntityGraph(attributePaths = { "role"})
     Page<User> findAll(Specification<User> specification, Pageable pageable);
 }
