@@ -4,6 +4,7 @@ import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.bogdanov.diplom.data.exception.NotFoundServiceException;
 import ru.bogdanov.diplom.grpc.generated.auth.model.User;
 import ru.bogdanov.diplom.grpc.generated.auth.user.OneUserRequest;
@@ -52,6 +53,9 @@ public class GrpcUserService extends UserServiceGrpc.UserServiceImplBase {
 
     @Override
     public void save(User request, StreamObserver<User> responseObserver) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        request = request.toBuilder().setPassword(encoder.encode(request.getPassword()))
+                .build();
         responseObserver.onNext(
                 userMapper.transform(
                         userService.save(

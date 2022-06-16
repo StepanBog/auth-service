@@ -1,6 +1,6 @@
 spring:
   application:
-    name: odp-auth
+    name: auth-service
   liquibase:
     enabled: true
   datasource:
@@ -48,7 +48,7 @@ grpc:
     permit-keep-alive-without-calls: false
   client:
     main-service:
-      address: 'static://localhost:6563'
+      address: 'static://localhost:6565'
       enableKeepAlive: true
       keepAliveTime: 10s
       keepAliveTimeout: 5s

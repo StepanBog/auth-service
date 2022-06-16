@@ -2,6 +2,7 @@ package ru.bogdanov.diplom.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +11,8 @@ import ru.bogdanov.diplom.data.exception.AuthServiceException;
 import ru.bogdanov.diplom.data.model.User;
 import ru.bogdanov.diplom.grpc.generated.auth.model.UserRole;
 import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.service.employee.ActivateRequest;
+import ru.bogdanov.diplom.grpc.generated.service.employee.EmployeeServiceGrpc;
 import ru.bogdanov.diplom.service.IAuthService;
 import ru.bogdanov.diplom.service.IUserService;
 
@@ -26,6 +29,8 @@ public class AuthService implements IAuthService {
 
     private final IUserService userService;
     private final BCryptPasswordEncoder passwordEncoder;
+    @GrpcClient("main-service")
+    private  EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeClient;
 
     @Override
     public User authenticate(@NotNull final UsernamePasswordAuthenticationToken basicToken, UserRole role) {
@@ -51,6 +56,11 @@ public class AuthService implements IAuthService {
         }
         if (!existUser.getRole().getRoleName().name().equals(role.name())) {
             throw new AuthServiceException("Incorrect role", ErrorCode.AUTHORIZATION_ERROR, 401);
+        }
+        if (existUser.getEmployeeId() != null) {
+            employeeClient.activateEmployee(ActivateRequest.newBuilder()
+                    .setEmployeeId(String.valueOf(existUser.getEmployeeId()))
+                    .build());
         }
         return existUser;
     }

@@ -23,6 +23,7 @@
         <odp-auth-proto.version>2.0.0-SNAPSHOT</odp-auth-proto.version>
         <odp-common-proto.version>2.0.0-SNAPSHOT</odp-common-proto.version>
         <odp-service-proto.version>2.0.0-SNAPSHOT</odp-service-proto.version>
+        <main-service-proto.version>1.0</main-service-proto.version>
 
         <starter-grpc.version>2.13.1.RELEASE</starter-grpc.version>
     </properties>
@@ -108,12 +109,11 @@
             <artifactId>logback-gelf</artifactId>
             <version>${logback.gelf.version}</version>
         </dependency>
-            <dependency>
-                <groupId>ru.bogdanov.diplom</groupId>
-                <artifactId>common-proto</artifactId>
-                <version>1.0</version>
-            </dependency>
-
+        <dependency>
+            <groupId>ru.bogdanov.diplom</groupId>
+            <artifactId>main-service-proto</artifactId>
+            <version>${main-service-proto.version}</version>
+        </dependency>
         <dependency>
             <groupId>ru.bogdanov.diplom</groupId>
             <artifactId>auth-proto</artifactId>

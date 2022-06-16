@@ -84,7 +84,7 @@ public class UserSpecification {
                             LocalDateTime.of(TimeUtils.toLocalDateTime(findRequest.getUpdatedAt()).toLocalDate(), LocalTime.MAX))));
         }
 
-        if (!CollectionUtils.isEmpty(findRequest.getRolesList())) {
+        /*if (!CollectionUtils.isEmpty(findRequest.getRolesList())) {
             specs.add((root, criteriaQuery, criteriaBuilder) -> {
                 Join roleJoin = root.join("roles", JoinType.INNER);
 
@@ -94,7 +94,7 @@ public class UserSpecification {
 
                 return criteriaQuery.getRestriction();
             });
-        }
+        }*/
 
         return JpaUtils.buildSingleAndSpecification(specs);
     }

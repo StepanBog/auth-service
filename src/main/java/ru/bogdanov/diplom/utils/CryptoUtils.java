@@ -40,7 +40,7 @@ public class CryptoUtils {
     }
 
     private static Key readPrivateKey() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        File f = new File("C:\\Users\\stepa\\IdeaProjects\\Diplom\\auth-service\\src\\main\\resources\\cert\\test_private_key.key");
+        File f = new File("src\\main\\resources\\cert\\test_private_key.key");
         try (InputStream is = new FileInputStream(f)) {
             String privateKeyContent = new String(is.readAllBytes())
                     .replaceAll("\\n", "")
@@ -54,7 +54,7 @@ public class CryptoUtils {
     }
 
     private static Certificate readCertificate() throws IOException, CertificateException {
-        File f = new File("C:\\Users\\stepa\\IdeaProjects\\Diplom\\auth-service\\src\\main\\resources\\cert\\test_certificate.crt");
+        File f = new File("src\\main\\resources\\cert\\test_certificate.crt");
         try (InputStream is = new FileInputStream(f)) {
             return CertificateFactory.getInstance("X509").generateCertificate(is);
         }

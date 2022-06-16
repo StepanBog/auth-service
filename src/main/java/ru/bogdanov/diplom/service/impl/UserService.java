@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bogdanov.diplom.config.TokenConfigurationProperties;
@@ -89,6 +90,9 @@ public class UserService implements IUserService {
     @Override
     @Transactional
     public User save(User user) {
+        Role role = roleRepository.save(user.getRole());
+        user.setRole(role);
+        user.setEnable(true);
         return userRepository.save(user);
     }
 }
