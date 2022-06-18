@@ -14,7 +14,7 @@ import ru.bogdanov.diplom.utils.GrpcErrorUtils;
 @GrpcAdvice
 public class GrpcExceptionAdvice {
 
-    @Value(value = "${spring.application.name:odp-auth}")
+    @Value(value = "${spring.application.name:auth-service}")
     private String applicationName;
 
     @GrpcExceptionHandler(Exception.class)
