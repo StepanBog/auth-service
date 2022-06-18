@@ -7,7 +7,7 @@ import net.devh.boot.grpc.server.advice.GrpcAdvice;
 import net.devh.boot.grpc.server.advice.GrpcExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;
 import ru.bogdanov.diplom.data.exception.AuthServiceException;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 import ru.bogdanov.diplom.utils.GrpcErrorUtils;
 
 @Slf4j

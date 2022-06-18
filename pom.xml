@@ -119,6 +119,11 @@
             <artifactId>auth-proto</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>ru.bogdanov.diplom</groupId>
+            <artifactId>common-proto</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,6 +1,7 @@
 package ru.bogdanov.diplom.data.exception;
 
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 
 public class NotFoundServiceException extends AuthServiceException {
 

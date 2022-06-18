@@ -1,7 +1,7 @@
 package ru.bogdanov.diplom.data.exception;
 
 import lombok.Getter;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 
 public class AuthServiceException extends RuntimeException {
 

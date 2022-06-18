@@ -1,8 +1,6 @@
 package ru.bogdanov.diplom.service;
 
-import org.springframework.data.domain.Page;
 import ru.bogdanov.diplom.data.model.User;
-import ru.bogdanov.diplom.grpc.generated.auth.user.UserSearchRequest;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;

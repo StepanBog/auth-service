@@ -1,20 +1,14 @@
 package ru.bogdanov.diplom.repository.specification.entity;
 
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.util.CollectionUtils;
 import ru.bogdanov.diplom.data.enums.SearchOperation;
 import ru.bogdanov.diplom.data.model.User;
 import ru.bogdanov.diplom.grpc.generated.auth.user.UserSearchRequest;
-import ru.bogdanov.diplom.grpc.generated.common.UserRole;
 import ru.bogdanov.diplom.repository.specification.JpaSpecification;
 import ru.bogdanov.diplom.repository.specification.SearchCriteria;
 import ru.bogdanov.diplom.utils.JpaUtils;
 import ru.bogdanov.diplom.utils.TimeUtils;
 
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.LocalTime;

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import ru.bogdanov.diplom.data.exception.AuthServiceException;
 import ru.bogdanov.diplom.data.model.User;
 import ru.bogdanov.diplom.grpc.generated.auth.model.UserRole;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 import ru.bogdanov.diplom.grpc.generated.service.employee.ActivateRequest;
 import ru.bogdanov.diplom.grpc.generated.service.employee.EmployeeServiceGrpc;
 import ru.bogdanov.diplom.service.IAuthService;

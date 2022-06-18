@@ -11,7 +11,7 @@ import ru.bogdanov.diplom.grpc.generated.auth.token.GenerateTokenRequest;
 import ru.bogdanov.diplom.grpc.generated.auth.token.RefreshTokenRequest;
 import ru.bogdanov.diplom.grpc.generated.auth.token.TokenResponse;
 import ru.bogdanov.diplom.grpc.generated.auth.token.TokenServiceGrpc;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 import ru.bogdanov.diplom.mapper.UserMapper;
 import ru.bogdanov.diplom.service.ITokenService;
 import ru.bogdanov.diplom.service.IUserService;

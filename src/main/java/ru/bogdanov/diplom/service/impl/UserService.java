@@ -2,28 +2,19 @@ package ru.bogdanov.diplom.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bogdanov.diplom.config.TokenConfigurationProperties;
 import ru.bogdanov.diplom.data.exception.NotFoundServiceException;
 import ru.bogdanov.diplom.data.model.Role;
 import ru.bogdanov.diplom.data.model.User;
-import ru.bogdanov.diplom.grpc.generated.auth.user.UserSearchRequest;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
-import ru.bogdanov.diplom.grpc.generated.common.UserRole;
+import ru.bogdanov.diplom.grpc.generated.auth.model.UserRole;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 import ru.bogdanov.diplom.repository.RoleRepository;
 import ru.bogdanov.diplom.repository.UserRepository;
-import ru.bogdanov.diplom.repository.specification.entity.UserSpecification;
 import ru.bogdanov.diplom.service.IUserService;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

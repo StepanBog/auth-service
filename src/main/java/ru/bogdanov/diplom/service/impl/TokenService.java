@@ -7,7 +7,7 @@ import org.jose4j.jwt.consumer.JwtContext;
 import org.springframework.stereotype.Service;
 import ru.bogdanov.diplom.data.exception.AuthServiceException;
 import ru.bogdanov.diplom.data.model.User;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
 import ru.bogdanov.diplom.service.ITokenService;
 import ru.bogdanov.diplom.service.IUserService;
 import ru.bogdanov.diplom.service.TokenManager;

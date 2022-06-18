@@ -9,10 +9,6 @@ import ru.bogdanov.diplom.mapper.common.StringValueMapper;
 import ru.bogdanov.diplom.mapper.common.TimestampMapper;
 import ru.bogdanov.diplom.mapper.common.UUIDValueMapper;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Mapper(uses = {
         StringValueMapper.class,
         UUIDValueMapper.class,

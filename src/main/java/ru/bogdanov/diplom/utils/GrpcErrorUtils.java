@@ -4,8 +4,8 @@ import com.google.protobuf.Any;
 import com.google.rpc.Status;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorCode;
-import ru.bogdanov.diplom.grpc.generated.common.ErrorInfoCustom;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorCode;
+import ru.bogdanov.diplom.grpc.generated.error.ErrorInfoCustom;
 
 import javax.validation.constraints.NotNull;
 

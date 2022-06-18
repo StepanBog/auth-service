@@ -13,12 +13,10 @@ import org.jose4j.jwt.consumer.JwtContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.bogdanov.diplom.config.TokenConfigurationProperties;
-import ru.bogdanov.diplom.data.model.Role;
 import ru.bogdanov.diplom.data.model.User;
 import ru.bogdanov.diplom.utils.CryptoUtils;
 
 import javax.annotation.PostConstruct;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +24,7 @@ public class TokenManager {
 
     private final TokenConfigurationProperties tokenConfigurationProperties;
 
-    @Value(value = "${tech.inno.keystore.secret-key:}")
+    @Value(value = "${ru.bogdanov.diplom-key:}")
     private char[] keyStoreSecretKey;
 
     @PostConstruct

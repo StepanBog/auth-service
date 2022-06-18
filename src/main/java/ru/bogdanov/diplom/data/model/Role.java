@@ -2,7 +2,7 @@ package ru.bogdanov.diplom.data.model;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import ru.bogdanov.diplom.grpc.generated.common.UserRole;
+import ru.bogdanov.diplom.grpc.generated.auth.model.UserRole;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
